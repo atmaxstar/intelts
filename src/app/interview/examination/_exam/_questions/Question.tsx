@@ -10,13 +10,12 @@ import { useCountDownInterval } from "@/utils/useCountDownInterval";
 
 interface Props{
     question: string;
-    part: 'part1' | 'part3';
     handleNext: () => void;
     appendAnswer: ({ques, ans}: {ques: string, ans: string}) => void;
 }
 
-const Question = ({question, part, handleNext, appendAnswer}: Props) => {
-    const [countTime, setCountTime] = useState<number>(part == 'part1' ? 30 : 50)
+const Question = ({question, handleNext, appendAnswer}: Props) => {
+    const [countTime, setCountTime] = useState<number>(180)
     useCountDownInterval(countTime, setCountTime, () => handleFinished())
 
     const {
@@ -47,7 +46,7 @@ const Question = ({question, part, handleNext, appendAnswer}: Props) => {
     return (
         <div className="flex flex-col justify-center items-center h-4/6 gap-2">
             
-            <div className='animate-fade-in-bottom text-xl mx-3' onAnimationEnd={handleAnimated}>
+            <div className='animate-fade-in-bottom text-xl' onAnimationEnd={handleAnimated}>
                 {question}
             </div>
         

@@ -1,5 +1,5 @@
 import { GEMINI_URL } from "@/config/URL";
-import { Response } from "../Response.type";
+import { Response } from "./Response.type";
 
 export const fetchQuestions = async () => {
 

@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="flex h-5/6 flex-col items-center justify-center p-24">
-      <div className="text-2xl p-5">
+      <div className="text-[min(5vw,25px)] p-5">
         Select which you practice
       </div>
       <div className="flex flex-col w-full mb-10 sm:flex-row gap-10">

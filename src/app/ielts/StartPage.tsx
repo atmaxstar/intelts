@@ -13,6 +13,10 @@ const StartPage = () => {
       <Link className="px-10 py-1 m-10 text-red-500 border border-red-500 font-semibold rounded hover:bg-red-100 animate-fade-in" href={`/ielts/examination`}>
         Start
       </Link>
+        
+      <Link className="px-10 py-1 m-10 text-blue-500 border border-blue-500 font-semibold rounded hover:bg-red-100 animate-fade-in" href={`/`}>
+          Back
+      </Link>
     </div>
   )
 }

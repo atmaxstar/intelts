@@ -1,9 +1,8 @@
+import StartPage from "./StartPage"
 
 const page = () => {
   return (
-    <div>
-      
-    </div>
+    <StartPage/>
   )
 }
 
