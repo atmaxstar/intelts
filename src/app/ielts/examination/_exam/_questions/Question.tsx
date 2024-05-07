@@ -12,9 +12,10 @@ interface Props{
     question: string;
     part: 'part1' | 'part3';
     handleNext: () => void;
+    appendAnswer: ({ques, ans}: {ques: string, ans: string}) => void;
 }
 
-const Question = ({question, part, handleNext}: Props) => {
+const Question = ({question, part, handleNext, appendAnswer}: Props) => {
     const [countTime, setCountTime] = useState<number>(part == 'part1' ? 30 : 50)
     useCountDownInterval(countTime, setCountTime, () => handleFinished())
 
@@ -31,8 +32,10 @@ const Question = ({question, part, handleNext}: Props) => {
         }, 5);
     };
 
-    const handleFinished = () =>{
-        SpeechRecognition.stopListening();
+    const handleFinished = async () =>{
+        await SpeechRecognition.stopListening();
+        await appendAnswer({ques: question, ans: transcript});
+        await resetTranscript();
         handleNext();
     }
     

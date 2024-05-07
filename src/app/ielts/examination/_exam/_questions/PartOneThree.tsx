@@ -7,9 +7,10 @@ interface Props {
     questions: string[];
     part: 'part1' | 'part3';
     gotoNextPart: () => void;
+    appendAnswer: ({ques, ans}: {ques: string, ans: string}) => void;
 }
 
-const PartOneThree = ({ questions, part, gotoNextPart }: Props) => {
+const PartOneThree = ({ questions, part, gotoNextPart, appendAnswer }: Props) => {
     const [idx, setIdx] = useState(0);
 
     const handleNext = () =>{
@@ -25,7 +26,7 @@ const PartOneThree = ({ questions, part, gotoNextPart }: Props) => {
         <>
             {questions.map((question, index) =>
                 <>
-                    {idx === index && <Question question={question} part={part} handleNext={handleNext}/>}
+                    {idx === index && <Question question={question} part={part} handleNext={handleNext} appendAnswer={appendAnswer}/>}
                 </>
             )}
         </>

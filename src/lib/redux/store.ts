@@ -1,9 +1,9 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { ieltsQuestionsReducer } from './features/IeltsQuestionsSlice'
+import { ieltsAnswersReducer } from './features/IeltsAnswersSlice';
 
 
 const reducers = combineReducers({
-    ieltsQuestions: ieltsQuestionsReducer
+    ieltsAnswers: ieltsAnswersReducer
 })
 
 const store = configureStore({

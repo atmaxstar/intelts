@@ -5,7 +5,7 @@ export const usePartManager = () =>{
 
     const gotoNextPart = () =>{
         if (part === 'part1'){
-            setPart('part3');
+            setPart('part2');
         }
         else if (part === 'part2'){
             setPart('part3');
