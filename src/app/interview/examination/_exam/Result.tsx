@@ -16,7 +16,7 @@ const Result = ({answer}: Props) => {
             <>
                 {answer.map(op=>
                     <div key={op.question} className="my-6">
-                        <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{op.question}</h2>
+                        <div className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{op.question}</div>
                         {op.answer}
                     </div>
                 )}

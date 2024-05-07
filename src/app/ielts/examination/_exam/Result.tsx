@@ -31,7 +31,7 @@ const Result = ({answer}: Props) => {
             title: 'Part2', 
             children: 
             <>
-                <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{answer.part2.subject}</h2>
+                <div className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{answer.part2.subject}</div>
                 <ul className="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
                     {answer.part2.shouldSay.map(op => 
                         <li key={op}>

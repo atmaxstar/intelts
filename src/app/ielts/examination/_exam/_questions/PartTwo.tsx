@@ -51,6 +51,7 @@ const PartTwo = ({question, handleNext, addAnswer}: Props) => {
             {question.subject}
         </div>
         <ul className="text-md animate-fade-in" onAnimationEnd={handleAnimated}>
+          You should say
           {question.shouldSay.map(op =><li key={op}>・{op}</li>)}
         </ul>
     
