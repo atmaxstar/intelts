@@ -10,11 +10,11 @@ const StartPage = () => {
       <div className='animate-fade-in-bottom'>
       Are you Okay?
       </div>
-      <Link className="px-10 py-1 m-10 text-red-500 border border-red-500 font-semibold rounded hover:bg-red-100 animate-fade-in" href={`/interview/examination`}>
+      <Link className="px-16 py-1 mt-10 mb-5 text-red-500 border border-red-500 font-semibold rounded hover:bg-red-100 animate-fade-in" href={`/interview/examination`}>
         Start
       </Link>
         
-      <Link className="px-10 py-1 m-10 text-blue-500 border border-blue-500 font-semibold rounded hover:bg-red-100 animate-fade-in" href={`/`}>
+      <Link className="px-3 py-1 text-blue-500 border border-blue-500 font-semibold rounded hover:bg-red-100 animate-fade-in" href={`/`}>
           Back
       </Link>
     </div>
