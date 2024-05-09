@@ -64,10 +64,23 @@ export const fetchQuestions = async () => {
     let part1 = question_string_part1.candidates[0].content.parts[0].text.split('|');
 
     let part2 = question_string_part2.candidates[0].content.parts[0].text.split('*');
+    let subject;
+    let shouldSay;
 
-    part2 = part2.filter(question => question !== '');
-    let subject = part2[0];
-    let shouldSay = part2[1].split('|');
+    //when * does not appear
+    //Experience | you should say when it happened | what you did | what you felt | why it was memorable
+    if (part2.length === 1){
+        part2 = part2[0].split('|');
+        part2 = part2.filter(question => question !== '');
+        subject = part2[0];
+        shouldSay = part2.slice(1);
+    }
+    //when questions are in the correct format
+    else{
+        part2 = part2.filter(question => question !== '');
+        subject = part2[0];
+        shouldSay = part2[1].split('|');
+    }
 
     let part3 = question_string_part3.candidates[0].content.parts[0].text.split('|');
 

@@ -14,7 +14,7 @@ const StartPage = () => {
         Start
       </Link>
         
-      <Link className="px-3 py-1 text-blue-500 border border-blue-500 font-semibold rounded hover:bg-red-100 animate-fade-in" href={`/`}>
+      <Link className="px-3 py-1 text-blue-500 border border-blue-500 font-semibold rounded hover:bg-blue-100 animate-fade-in" href={`/`}>
           Back
       </Link>
     </div>

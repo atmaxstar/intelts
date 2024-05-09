@@ -26,7 +26,7 @@ const PartOneThree = ({ questions, part, gotoNextPart, appendAnswer }: Props) =>
         <>
             {questions.map((question, index) =>
                 <>
-                    {idx === index && <Question question={question} part={part} handleNext={handleNext} appendAnswer={appendAnswer}/>}
+                    {idx === index && <Question key={question} question={question} part={part} handleNext={handleNext} appendAnswer={appendAnswer}/>}
                 </>
             )}
         </>

@@ -16,7 +16,7 @@ interface Props{
 }
 
 const Question = ({question, part, handleNext, appendAnswer}: Props) => {
-    const [countTime, setCountTime] = useState<number>(part == 'part1' ? 30 : 50)
+    const [countTime, setCountTime] = useState<number>(part == 'part1' ? 33 : 53)
     useCountDownInterval(countTime, setCountTime, () => handleFinished())
 
     const {
@@ -29,7 +29,7 @@ const Question = ({question, part, handleNext, appendAnswer}: Props) => {
     const handleAnimated = () =>{
         setTimeout(() => {
             SpeechRecognition.startListening({ language: 'en-US', continuous: true })
-        }, 5);
+        }, 3000);
     };
 
     const handleFinished = async () =>{

@@ -89,7 +89,7 @@ const Result = ({answer}: Props) => {
         </div> 
 
         
-        <Link className="px-10 py-1 m-10 text-blue-500 border border-blue-500 font-semibold rounded hover:bg-red-100 animate-fade-in" href={`/`}>
+        <Link className="px-10 py-1 m-10 text-blue-500 border border-blue-500 font-semibold rounded hover:bg-blue-100 animate-fade-in" href={`/`}>
             Return To Home
         </Link>
     </div>

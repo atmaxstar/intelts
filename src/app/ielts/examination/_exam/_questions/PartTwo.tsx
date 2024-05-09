@@ -13,8 +13,8 @@ interface Props {
 }
 
 const PartTwo = ({question, handleNext, addAnswer}: Props) => {
-  const [prepTime, setPrepTime] = useState<number>(60);
-  const [countTime, setCountTime] = useState<number>(180);
+  const [prepTime, setPrepTime] = useState<number>(70);
+  const [countTime, setCountTime] = useState<number>(190);
   const [preparing, setPreparing] = useState(false);
   useCountDownInterval(prepTime, setPrepTime, () => handleFinishPreparation());
   useCountDownInterval(countTime, setCountTime, () => handleFinished());
@@ -27,7 +27,9 @@ const PartTwo = ({question, handleNext, addAnswer}: Props) => {
   } = useSpeechRecognition();
 
   const handleAnimated = () =>{
+    setTimeout(() => {
       setPreparing(true);
+    }, 10000);
   };
 
   const handleFinishPreparation = () =>{
