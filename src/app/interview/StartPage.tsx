@@ -11,7 +11,7 @@ const StartPage = () => {
         Are you Okay?
       </div>
       <Link className="px-16 py-1 mt-10 mb-5 text-red-500 border border-red-500 font-semibold rounded hover:bg-red-100 animate-fade-in" href={`/interview/examination`}>
-        Start
+        Start aaaa
       </Link>
         
       <Link className="px-3 py-1 text-blue-500 border border-blue-500 font-semibold rounded hover:bg-blue-100 animate-fade-in" href={`/`}>
