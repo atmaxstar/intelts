@@ -1,11 +1,12 @@
-'use client'
 
 import { getServerSession } from "next-auth"; // 2⃣
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Table from "./Table";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
-const Profile = () => {
-  const session = useSession();
+const page = async () => {
+  const session = await getServerSession(authOptions);
 
   return (
     <>
@@ -13,17 +14,10 @@ const Profile = () => {
       {!session ? (
         <p>ユーザー情報が取得できていません。。。</p>
       ) : (
-        <>
-          <div>
-          </div>
-          <div className="mt-8">
-            <p className="mb-3">Name: {session.data?.user?.name}</p>
-            <p className="mb-3">Email: {session.data?.user?.email}</p>
-          </div>
-        </>
+        <Table/>
       )}
     </>
   );
 }
 
-export default Profile
+export default page

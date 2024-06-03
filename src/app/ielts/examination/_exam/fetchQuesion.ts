@@ -58,15 +58,14 @@ export const fetchQuestions = async () => {
     const question_string_part1 = await response_part1.json() as Response;
     const question_string_part2 = await response_part2.json() as Response;
     const question_string_part3 = await response_part3.json() as Response;
-    //part1: | What is your name? | Where are you from? | What is your occupation? | What do you like doing in your free time? | What is your favorite food? | Do you like to travel? | Have you ever been to another country? |
-    //part2: | A memorable journey || You should say: | When and where it was | Who you went with | What you did | And explain why this journey was so memorable for you |
-    //part3: | Do you ever watch movies? | Why do you think people like to watch movies? | Do you think movies have a positive or negative impact on society? | How has technology changed the way we watch movies? |
+    
     let part1 = question_string_part1.candidates[0].content.parts[0].text.split('|');
 
     let part2 = question_string_part2.candidates[0].content.parts[0].text.split('*');
     let subject;
     let shouldSay;
 
+    console.log(question_string_part2.candidates[0].content.parts[0].text);
     //when * does not appear
     //Experience | you should say when it happened | what you did | what you felt | why it was memorable
     if (part2.length === 1){
@@ -74,6 +73,16 @@ export const fetchQuestions = async () => {
         part2 = part2.filter(question => question !== '');
         subject = part2[0];
         shouldSay = part2.slice(1);
+    }
+    // when * appears 3 times
+    // Topic* |You should say| A time you gave or received advice*|when|who you gave the advice to|what the advice was|why you gave the advice|how the person reacted|
+    if (part2.length === 3){
+        shouldSay = part2[2].split('|')
+        shouldSay = shouldSay.filter(op => op !== '');
+
+        let second = part2[1].split('|');
+        second = second.filter(op => op !== '')
+        subject = second[second.length - 1]
     }
     //when questions are in the correct format
     else{
