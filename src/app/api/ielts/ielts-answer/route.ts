@@ -78,6 +78,9 @@ export async function GET(req: NextRequest) {
       select: {
         id: true, 
         tag: true,
+      },
+      orderBy: {
+        id: 'desc'
       }
     })
     .catch(err => {

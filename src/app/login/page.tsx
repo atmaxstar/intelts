@@ -2,7 +2,9 @@ import Login from "./Login"
 
 const page = () => {
   return (
-    <Login/>
+    <div className="w-full h-5/6 flex justify-center items-center">
+      <Login/>
+    </div>
   )
 }
 

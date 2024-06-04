@@ -1,20 +1,25 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import { fetchAnswers } from "./fetchAnswers"
+import { fetchAnswers_IELTS } from "./fetchAnswers"
 import Link from "next/link";
+import Tag from "./Tag";
 
-const Table = () => {
+const IELTSTable = () => {
     const [answers, setAnswers] = useState<{ id: number; tag: string; }[]>([])
 
-    useEffect(()=>{
-        fetchAnswers()
+    const fetchAndStoreAnswer = () => {
+        fetchAnswers_IELTS()
             .then(res => setAnswers(res));
+    }
+
+    useEffect(()=>{
+        fetchAndStoreAnswer();
     },[])
         
     return (
-        <div className="border border-gray-300 shadow-sm rounded-lg overflow-hidden max-w-sm mx-auto mt-16">
-            <table className="w-full text-sm leading-5">
+        <div className="border w-full border-gray-300 shadow-sm rounded-lg overflow-hidden max-w-sm mx-auto">
+            <table className="w-full text-sm leading-5 max-h-96 overflow-y-auto">
                 <thead className="bg-gray-100">
                 <tr>
                     <th className="py-3 px-4 text-center font-medium text-gray-600">{"Tag"}</th>
@@ -26,7 +31,7 @@ const Table = () => {
                         answers.length !== 0 ?
                         answers.map(ans => 
                             <tr key={ans.id}>
-                                <td className="py-3 px-4 text-center font-medium text-gray-600">{ans.tag}</td>
+                                <td><Tag test="ielts" id={ans.id} tag={ans.tag} fetchAndStoreAnswers={fetchAndStoreAnswer}/></td>
                                 <td className="py-3 px-4 text-right">
                                     <Link
                                         className="relative inline-flex items-center justify-center p-4 px-6 py-1 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-gray-500 rounded-full shadow-md group"
@@ -70,4 +75,4 @@ const Table = () => {
     )
 }
 
-export default Table
+export default IELTSTable

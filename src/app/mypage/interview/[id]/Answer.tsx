@@ -14,40 +14,20 @@ const Answer = ({id}: Props) => {
     const [partOne, setPartOne] = useState<
     {
         id: number;
-        ielts_answer_id: number;
+        interview_answer_id: number;
         question: string;
         answer: string;
         ideal_answer: string;
     }[]>([]);
     
-    const [partTwo, setPartTwo] = useState<
-    {
-        id: number;
-        ielts_answer_id: number;
-        question: string;
-        shouldSay: string[]
-        answer: string;
-        ideal_answer: string;
-    }>();
-    
-    const [partThree, setPartThree] = useState<
-    {
-        id: number;
-        ielts_answer_id: number;
-        question: string;
-        answer: string;
-        ideal_answer: string;
-    }[]>([]);
 
     const fetchAndStoreAnswer = () => {
         fetchAnswer(id)
             .then(res => {
                 setPartOne(res.partOne);
-                setPartTwo(res.partTwo);
-                setPartThree(res.partThree);
             });
     }
-        
+    
     useEffect(()=>{
         fetchAndStoreAnswer();
     },[])
@@ -55,22 +35,10 @@ const Answer = ({id}: Props) => {
     const [accordions, setAccordion] = useState([ 
         { 
             key: 1, 
-            title: 'Part1', 
+            title: '', 
             children: <></>, 
             isOpen: false
-        }, 
-        { 
-            key: 2, 
-            title: 'Part2', 
-            children: <></>, 
-            isOpen: false
-        }, 
-        { 
-            key: 3, 
-            title: 'Part3', 
-            children: <></>,
-            isOpen: false
-        }, 
+        }
     ]); 
   
     const toggleAccordion = (accordionkey: number) => { 
@@ -90,19 +58,7 @@ const Answer = ({id}: Props) => {
             if (accord.key === 1) { 
                 return { ...accord, children: 
                         <>
-                            {partOne.map(op=><Content key={`one-${op.id}`} part='one' id={op.id} ielts_answer_id={op.ielts_answer_id} question={op.question} answer={op.answer} ideal_answer={op.ideal_answer} fetchAndStoreAnswer={fetchAndStoreAnswer} />)}
-                        </>,  
-                }; 
-            } else if (accord.key === 2) { 
-                return { ...accord, children: 
-                    <>
-                        {partTwo && <Content key={`one-${partTwo.id}`} part='one' id={partTwo.id} ielts_answer_id={partTwo.ielts_answer_id} question={partTwo.question} shouldSay={partTwo.shouldSay} answer={partTwo.answer} ideal_answer={partTwo.ideal_answer} fetchAndStoreAnswer={fetchAndStoreAnswer} />}
-                    </> 
-                }; 
-            } else if (accord.key === 3) {
-                return { ...accord, children: 
-                        <>
-                            {partThree.map(op=><Content key={`three-${op.id}`} part='three' id={op.id} ielts_answer_id={op.ielts_answer_id} question={op.question} answer={op.answer} ideal_answer={op.ideal_answer} fetchAndStoreAnswer={fetchAndStoreAnswer} />)}
+                            {partOne.map(op=><Content key={`one-${op.id}`} part='one' interview_answer_id={op.interview_answer_id} id={op.id} question={op.question} answer={op.answer} ideal_answer={op.ideal_answer} fetchAndStoreAnswer={fetchAndStoreAnswer} />)}
                         </>,  
                 }; 
             } else {
@@ -111,7 +67,7 @@ const Answer = ({id}: Props) => {
         });
         
         setAccordion(updatedAccordions);
-    },[partOne, partTwo, partThree])
+    },[partOne])
 
     return (
         <div className="flex flex-col items-center w-full">
