@@ -3,7 +3,7 @@
 import { getServerSession } from "next-auth"; // 2⃣
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "../../lib/auth";
 import IELTSTable from "./IELTSTable";
 import Link from "next/link";
 import { robotoslab } from "@/utils/font";
