@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/Layout/Header";
 import Head from "next/head";
+import NextAuthProvider from "@/providers/NextAuth";
 
 export const metadata: Metadata = {
   title: "INTELTS",
@@ -17,8 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header/>
-        {children}
+        <NextAuthProvider>
+          <Header/>
+          {children}
+        </NextAuthProvider>
       </body>
     </html>
   );

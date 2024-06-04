@@ -1,12 +1,24 @@
 import Accordion from "@/Components/Accordion";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { postAnswer } from "./postAnswer";
 
 interface Props{
     answer: {question: string, answer: string}[]
 }
 
 const Result = ({answer}: Props) => { 
+
+    const { data } = useSession();
+    
+    useEffect(()=>{
+
+        if (data?.user.id){
+            postAnswer({part1: answer});
+        }
+
+    },[data?.user.id])
 
     const [accordions, setAccordion] = useState([ 
         { 

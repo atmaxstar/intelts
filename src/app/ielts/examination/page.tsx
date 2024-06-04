@@ -1,9 +1,6 @@
 
-import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 import Question from "./_exam/_questions/Question";
 import Exam from "./_exam/Exam";
-import { Provider } from "react-redux";
-import store from "@/lib/redux/store";
 import { fetchQuestions } from "./_exam/fetchQuesion";
 
 
