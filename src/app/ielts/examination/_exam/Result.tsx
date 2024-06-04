@@ -2,8 +2,6 @@ import Accordion from "@/Components/Accordion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { postAnswer } from "./postAnswer";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { useSession } from "next-auth/react";
 
 interface Props{
