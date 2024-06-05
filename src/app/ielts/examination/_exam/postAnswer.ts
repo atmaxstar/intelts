@@ -22,12 +22,3 @@ export const postAnswer = async (ieltsAnswer: {
     const data = await response.json();
     console.log(data);
 }
-
-export const getAnswers = async () => {
-
-    const response = await fetch('/api/ielts/ielts-answer');
-
-    const answers: {id: number, tag: string}[] = await response.json();
-
-    return answers;
-}
