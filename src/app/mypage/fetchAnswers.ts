@@ -1,7 +1,7 @@
 
-export const fetchAnswers_IELTS = async () => {
+export const fetchAnswers = async (test: 'ielts' | 'interview') => {
 
-    const response = await fetch('/api/ielts/ielts-answer', {
+    const response = await fetch(`/api/${test}/${test}-answer`, {
         method: 'GET',
     });
 
@@ -10,24 +10,10 @@ export const fetchAnswers_IELTS = async () => {
             id: number, 
             tag: string,
         }[]
-};
+    };
 
-    return body.answers;
-
-}
-
-export const fetchAnswers_Interview = async () => {
-
-    const response = await fetch('/api/interview/interview-answer', {
-        method: 'GET',
-    });
-
-    const body = await response.json() as {
-        answers: {
-            id: number, 
-            tag: string,
-        }[]
-};
+    // idを昇順にソート
+    body.answers.sort((a,b) => a.id - b.id);
 
     return body.answers;
 

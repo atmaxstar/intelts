@@ -1,23 +1,35 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import { fetchAnswers_Interview } from "./fetchAnswers"
+import { fetchAnswers } from "./fetchAnswers"
 import Link from "next/link";
 import Tag from "./Tag";
+import LoadingDialog from "@/Components/LoadingDialog";
 
 const InterviewTable = () => {
+    const [loading, setLoading] = useState(false);
     const [answers, setAnswers] = useState<{ id: number; tag: string; }[]>([])
 
-    const fetchAndStoreAnswer = () => {
-        fetchAnswers_Interview()
+    const fetchAndStoreAnswer = async () => {
+        await fetchAnswers('interview')
             .then(res => setAnswers(res));
     }
-
+        
     useEffect(()=>{
-        fetchAndStoreAnswer();
+
+        // 初期ローディングだけローディングダイアログを表示
+        const initialLoad = async () => {
+            setLoading(true);
+            await fetchAndStoreAnswer();
+            setLoading(false);
+        }
+
+        initialLoad();
     },[])
         
     return (
+        <>
+        {loading && <LoadingDialog/>}
         <div className="border w-full border-gray-300 shadow-sm rounded-lg overflow-hidden max-w-sm mx-auto">
             <table className="w-full text-sm leading-5 max-h-96 overflow-y-auto">
                 <thead className="bg-gray-100">
@@ -72,6 +84,7 @@ const InterviewTable = () => {
                 </tbody>
             </table>
         </div>
+        </>
     )
 }
 
