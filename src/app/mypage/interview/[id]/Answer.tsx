@@ -4,12 +4,14 @@ import { fetchAnswer } from './fetchAnswer';
 import Link from 'next/link';
 import Accordion from "@/Components/Accordion";
 import Content from './Content';
+import LoadingDialog from '@/Components/LoadingDialog';
 
 interface Props {
     id: number;
 }
 
 const Answer = ({id}: Props) => {
+    const [loading, setLoading] = useState(false);
 
     const [partOne, setPartOne] = useState<
     {
@@ -21,15 +23,24 @@ const Answer = ({id}: Props) => {
     }[]>([]);
     
 
-    const fetchAndStoreAnswer = () => {
-        fetchAnswer(id)
+    const fetchAndStoreAnswer = async () => {
+
+        await fetchAnswer(id)
             .then(res => {
                 setPartOne(res.partOne);
             });
     }
-    
+        
     useEffect(()=>{
-        fetchAndStoreAnswer();
+
+        // 初期ローディングだけローディングダイアログを表示
+        const initialLoad = async () => {
+            setLoading(true);
+            await fetchAndStoreAnswer();
+            setLoading(false);
+        }
+
+        initialLoad();
     },[])
 
     const [accordions, setAccordion] = useState([ 
@@ -70,6 +81,9 @@ const Answer = ({id}: Props) => {
     },[partOne])
 
     return (
+        <>
+        
+        {loading && <LoadingDialog/>}
         <div className="flex flex-col items-center w-full">
             
             <div className="p-2 m-8 w-5/6 animate-fade-in-bottom"> 
@@ -91,6 +105,7 @@ const Answer = ({id}: Props) => {
                 Return To Mypage
             </Link>
         </div>
+        </>
     )
 }
 

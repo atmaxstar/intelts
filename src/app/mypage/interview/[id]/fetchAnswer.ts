@@ -17,6 +17,9 @@ export const fetchAnswer = async (id: number) => {
         }
     };
     
+    // idを昇順にソート
+    body.answer.partOne.sort((a,b) => a.id - b.id);
+    
     return body.answer;
 
 }

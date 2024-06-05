@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { updateTag } from "./updateTag";
 
 interface Props {
@@ -11,10 +11,18 @@ interface Props {
 
 const Tag = ({test, id, tag, fetchAndStoreAnswers}: Props) => {
     const [editting, setEditting] = useState(false);
+    const inputRef = useRef<HTMLInputElement>(null);
     const [text, setText] = useState(tag);
 
-    
+    useEffect(() => {
+        if(editting && inputRef.current){
+            inputRef.current.focus();
+        }
+    },[editting])
+
     const finishEdit = async () => {
+
+        setEditting(false);
 
         const idealAnswer = {
             test: test,
@@ -26,7 +34,6 @@ const Tag = ({test, id, tag, fetchAndStoreAnswers}: Props) => {
 
         await fetchAndStoreAnswers();
 
-        setEditting(false);
     }
 
     return (
@@ -34,10 +41,10 @@ const Tag = ({test, id, tag, fetchAndStoreAnswers}: Props) => {
             <div className='flex justify-between items-center gap-3'>
                 {
                     editting ? 
-                    <input id="tag" onChange={(e) => setText(e.target.value)} value={text} onBlur={finishEdit} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"/>
+                    <input id="tag" ref={inputRef} onChange={(e) => setText(e.target.value)} value={text} onBlur={finishEdit} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"/>
                     :
                     <div className='py-3 px-4 text-center font-medium text-gray-600'>
-                        {tag}
+                        {text}
                     </div>
                 }
                 <button onClick={()=>setEditting(true)}>
