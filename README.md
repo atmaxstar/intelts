@@ -1,5 +1,5 @@
 
-# Chat Application
+# Intelts
 This is the application for practicing IELTS Speaking Section and behavioral interview.
 
 # DEMO
