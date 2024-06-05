@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "@/Layout/Header";
 import Head from "next/head";
 import NextAuthProvider from "@/providers/NextAuth";
+import HeaderMyPage from "@/Layout/HeaderMyPage";
+import { useEffect } from "react";
 
 export const metadata: Metadata = {
   title: "INTELTS",
@@ -15,11 +17,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body>
         <NextAuthProvider>
-          <Header/>
           {children}
         </NextAuthProvider>
       </body>
