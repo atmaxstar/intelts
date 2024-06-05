@@ -34,7 +34,7 @@ const IELTSTable = () => {
             <table className="w-full text-sm leading-5 max-h-96 overflow-y-auto">
                 <thead className="bg-gray-100">
                 <tr>
-                    <th className="py-3 px-4 text-center font-medium text-gray-600">{"Tag"}</th>
+                    <th className="py-3 px-4 text-center font-medium text-gray-600">{"Tag (max: 25 char)"}</th>
                     <th className="py-3 px-4 text-left font-medium text-gray-600"></th>
                 </tr>
                 </thead>
