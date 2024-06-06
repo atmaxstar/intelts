@@ -33,7 +33,7 @@ export const fetchQuestions = async () => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(requestBody_part1),
-        next: { revalidate: 300 }  // cached for 5 minutes
+        next: { revalidate: 120 }  // cached for 2 minutes
     });
 
     const response_part2 = await fetch(`${GEMINI_URL}?key=` + process.env.GEMINI_API_KEY, {
@@ -42,7 +42,7 @@ export const fetchQuestions = async () => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(requestBody_part2),
-        next: { revalidate: 300 }  // cached for 5 minutes
+        next: { revalidate: 120 }  // cached for 2 minutes
     });
 
     const response_part3 = await fetch(`${GEMINI_URL}?key=` + process.env.GEMINI_API_KEY, {
@@ -51,22 +51,32 @@ export const fetchQuestions = async () => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(requestBody_part3),
-        next: { revalidate: 300 }  // cached for 5 minutes
+        next: { revalidate: 120 }  // cached for 2 minutes
     });
     
     
-    const question_string_part1 = await response_part1.json() as Response;
-    const question_string_part2 = await response_part2.json() as Response;
-    const question_string_part3 = await response_part3.json() as Response;
+    const responseBody_part1 = await response_part1.json() as Response;
+    const responseBody_part2 = await response_part2.json() as Response;
+    const responseBody_part3 = await response_part3.json() as Response;
     
-    let part1 = question_string_part1.candidates[0].content.parts[0].text.split('|');
+    // 欲しい文字列
+    // What is your name? | What do you do for a living? | Where are you from? | What do you like to do in your free time? | What's your favorite place in your hometown? | Do you like to read? | What kind of music do you listen to?
+    
+    // 文字列に改行が入っている事があるので削除する
+    let part1_string = responseBody_part1.candidates[0].content.parts[0].text.replace(/\n/g, '');
+    let part1 = part1_string.split('|');
+    // 空白の質問を削除
+    part1 = part1.filter(question => question !== '');
 
-    let part2 = question_string_part2.candidates[0].content.parts[0].text.split('*');
+    // 欲しい文字列
+    // A time you gave or received advice * who you gave the advice to|what the advice was | why you gave the advice | how the person reacted
+    // 文字列に改行が入っている事があるので削除する
+    let part2_string = responseBody_part2.candidates[0].content.parts[0].text.replace(/\n/g, '');
+    let part2 = part2_string.split('*');
     let subject;
     let shouldSay;
 
-    console.log(question_string_part2.candidates[0].content.parts[0].text);
-    //when * does not appear
+    // * が現れなかった場合
     //Experience | you should say when it happened | what you did | what you felt | why it was memorable
     if (part2.length === 1){
         part2 = part2[0].split('|');
@@ -74,9 +84,9 @@ export const fetchQuestions = async () => {
         subject = part2[0];
         shouldSay = part2.slice(1);
     }
-    // when * appears 3 times
+    // * が3回現れた場合
     // Topic* |You should say| A time you gave or received advice*|when|who you gave the advice to|what the advice was|why you gave the advice|how the person reacted|
-    if (part2.length === 3){
+    else if (part2.length === 3){
         shouldSay = part2[2].split('|')
         shouldSay = shouldSay.filter(op => op !== '');
 
@@ -84,28 +94,24 @@ export const fetchQuestions = async () => {
         second = second.filter(op => op !== '')
         subject = second[second.length - 1]
     }
-    //when questions are in the correct format
+    // 欲しい文字列の型になっていた場合
     else{
         part2 = part2.filter(question => question !== '');
         subject = part2[0];
         shouldSay = part2[1].split('|');
     }
 
-    let part3 = question_string_part3.candidates[0].content.parts[0].text.split('|');
-
-    part1 = part1.filter(question => question !== '');
-    
-    // if the response started from '|'
+    // you should sayと空白のものを削除
     shouldSay = shouldSay.filter(question => !question.includes('You should say') && !question.includes('you should say') && question !== '' && question !== ' ');
-    // if (shouldSay[0] === "" || shouldSay[0].includes('You should say')){
-    //     shouldSay = shouldSay.slice(1);
-    // }
-    
-    // if the response started from '|'
-    // if (part3[0] === ""){
-    //     part3 = part3.slice(1);
-    // }
+
+    // 欲しい文字列
+    //What are the advantages and disadvantages of using public transportation? | How do you think technology has changed the way people communicate? | What are the benefits and challenges of online learning? | How has the role of education changed in recent years? |  What are the advantages and disadvantages of living in a multicultural society? | Do you think globalization has had a positive or negative impact on the world?
+    // 文字列に改行が入っている事があるので削除する
+    let part3_string = responseBody_part3.candidates[0].content.parts[0].text.replace(/\n/g, '');
+    let part3 = part3_string.split('|');
+    // 空白の質問を削除
     part3 = part3.filter(question => question !== '');
+
 
     return {
         part1: part1,
