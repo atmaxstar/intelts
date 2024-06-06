@@ -31,8 +31,8 @@ const Result = ({answer}: Props) => {
             <>
                 {answer.part1.map(op=>
                     <div key={op.question} className="flex flex-col my-6">
-                        <span className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{op.question}</span>
-                        <span className="mb-2 text-base font-semibold text-gray-900 dark:text-white">Your Answer</span>
+                        <span className="mb-2 text-lg font-semibold text-gray-900">{op.question}</span>
+                        <span className="mb-2 text-base font-semibold text-gray-900">Your Answer</span>
                         <div className='w-11/12 min-h-10 break-words whitespace-pre-wrap border border-black border-1 rounded-md p-2'>
                             {op.answer}
                         </div>
@@ -46,15 +46,15 @@ const Result = ({answer}: Props) => {
             title: 'Part2', 
             children: 
                 <div className="flex flex-col">
-                    <div className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{answer.part2.subject}</div>
-                    <ul className="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
+                    <div className="mb-2 text-lg font-semibold text-gray-900">{answer.part2.subject}</div>
+                    <ul className="max-w-md space-y-1 text-gray-500 list-disc list-inside">
                         {answer.part2.shouldSay.map(op => 
                             <li key={op}>
                                 {op}
                             </li>
                         )}
                     </ul>
-                    <span className="mb-2 text-base font-semibold text-gray-900 dark:text-white">Your Answer</span>
+                    <span className="mb-2 text-base font-semibold text-gray-900">Your Answer</span>
                     <div className='w-11/12 min-h-10 break-words whitespace-pre-wrap border border-black border-1 rounded-md p-2'>
                         {answer.part2.answer}
                     </div>
@@ -68,8 +68,8 @@ const Result = ({answer}: Props) => {
             <>
                 {answer.part3.map(op=>
                     <div key={op.question} className="flex flex-col my-6">
-                        <span className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{op.question}</span>
-                        <span className="mb-2 text-base font-semibold text-gray-900 dark:text-white">Your Answer</span>
+                        <span className="mb-2 text-lg font-semibold text-gray-900">{op.question}</span>
+                        <span className="mb-2 text-base font-semibold text-gray-900">Your Answer</span>
                         <div className='w-11/12 min-h-10 break-words whitespace-pre-wrap border border-black border-1 rounded-md p-2'>
                             {op.answer}
                         </div>
