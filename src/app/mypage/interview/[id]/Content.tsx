@@ -40,13 +40,13 @@ const Content = ({part, id, interview_answer_id, question, answer, ideal_answer,
     }
 
     return (
-        <div className="my-6">
-            <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{question}</h2>
-            <h5 className="mb-2 text-base font-semibold text-gray-900 dark:text-white">Your Answer</h5>
+        <div className="flex flex-col my-6">
+            <span className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{question}</span>
+            <span className="mb-2 text-base font-semibold text-gray-900 dark:text-white">Your Answer</span>
             <div className='w-11/12 min-h-10 break-words whitespace-pre-wrap border border-black border-1 rounded-md p-2'>
                 {answer}
             </div>
-            <h5 className="mb-2 text-base font-semibold text-gray-900 dark:text-white">Ideal Answer</h5>
+            <span className="mb-2 text-base font-semibold text-gray-900 dark:text-white">Ideal Answer</span>
             <div className='flex justify-between items-center gap-3'>
                 {
                     editting ? 

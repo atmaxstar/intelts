@@ -30,12 +30,12 @@ const IELTSTable = () => {
     return (
         <>
         {loading && <LoadingDialog/>}
-        <div className="border w-full border-gray-300 shadow-sm rounded-lg overflow-hidden max-w-sm mx-auto">
-            <table className="w-full text-sm leading-5 max-h-96 overflow-y-auto">
-                <thead className="bg-gray-100">
+        <div className="border w-full max-h-96 overflow-y-auto border-gray-300 shadow-sm rounded-lg overflow-hidden max-w-sm mx-auto">
+            <table className="w-full text-sm leading-5">
+                <thead>
                 <tr>
-                    <th className="py-3 px-4 text-center font-medium text-gray-600">{"Tag (max: 25 char)"}</th>
-                    <th className="py-3 px-4 text-left font-medium text-gray-600"></th>
+                    <th className="sticky top-0 z-20 py-3 px-4 text-center font-medium text-gray-600 bg-gray-100">{"Tag (max: 25 char)"}</th>
+                    <th className="sticky top-0 z-20 py-3 px-4 text-left font-medium text-gray-600 bg-gray-100"></th>
                 </tr>
                 </thead>
                 <tbody>

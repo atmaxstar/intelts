@@ -30,9 +30,12 @@ const Result = ({answer}: Props) => {
             children: 
             <>
                 {answer.part1.map(op=>
-                    <div key={op.question} className="my-6">
-                        <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{op.question}</h2>
-                        {op.answer}
+                    <div key={op.question} className="flex flex-col my-6">
+                        <span className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{op.question}</span>
+                        <span className="mb-2 text-base font-semibold text-gray-900 dark:text-white">Your Answer</span>
+                        <div className='w-11/12 min-h-10 break-words whitespace-pre-wrap border border-black border-1 rounded-md p-2'>
+                            {op.answer}
+                        </div>
                     </div>
                 )}
             </>, 
@@ -42,17 +45,20 @@ const Result = ({answer}: Props) => {
             key: 2, 
             title: 'Part2', 
             children: 
-            <>
-                <div className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{answer.part2.subject}</div>
-                <ul className="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
-                    {answer.part2.shouldSay.map(op => 
-                        <li key={op}>
-                            {op}
-                        </li>
-                    )}
-                </ul>
-                {answer.part2.answer}
-            </>, 
+                <div className="flex flex-col">
+                    <div className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{answer.part2.subject}</div>
+                    <ul className="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
+                        {answer.part2.shouldSay.map(op => 
+                            <li key={op}>
+                                {op}
+                            </li>
+                        )}
+                    </ul>
+                    <span className="mb-2 text-base font-semibold text-gray-900 dark:text-white">Your Answer</span>
+                    <div className='w-11/12 min-h-10 break-words whitespace-pre-wrap border border-black border-1 rounded-md p-2'>
+                        {answer.part2.answer}
+                    </div>
+                </div>, 
             isOpen: false
         }, 
         { 
@@ -61,9 +67,12 @@ const Result = ({answer}: Props) => {
             children: 
             <>
                 {answer.part3.map(op=>
-                    <div key={op.question} className="my-6">
-                        <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{op.question}</h2>
-                        {op.answer}
+                    <div key={op.question} className="flex flex-col my-6">
+                        <span className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{op.question}</span>
+                        <span className="mb-2 text-base font-semibold text-gray-900 dark:text-white">Your Answer</span>
+                        <div className='w-11/12 min-h-10 break-words whitespace-pre-wrap border border-black border-1 rounded-md p-2'>
+                            {op.answer}
+                        </div>
                     </div>
                 )}
             </>, 

@@ -58,6 +58,8 @@ const Answer = ({id}: Props) => {
         const initialLoad = async () => {
             setLoading(true);
             await fetchAndStoreAnswer();
+            // ロード終了時にアコーディオンを開く
+            toggleAccordion(1)
             setLoading(false);
         }
 
