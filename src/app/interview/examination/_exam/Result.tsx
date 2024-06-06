@@ -28,8 +28,11 @@ const Result = ({answer}: Props) => {
             <>
                 {answer.map(op=>
                     <div key={op.question} className="my-6">
-                        <div className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{op.question}</div>
-                        {op.answer}
+                        <div className="mb-2 text-lg font-semibold text-gray-900">{op.question}</div>
+                        <span className="mb-2 text-base font-semibold text-gray-900 dark:text-white">Your Answer</span>
+                        <div className='w-11/12 min-h-10 break-words whitespace-pre-wrap border border-black border-1 rounded-md p-2'>
+                            {op.answer}
+                        </div>
                     </div>
                 )}
             </>, 
