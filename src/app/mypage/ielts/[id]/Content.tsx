@@ -42,9 +42,9 @@ const Content = ({part, id, ielts_answer_id, question, shouldSay, answer, ideal_
 
     return (
         <div className="flex flex-col my-6">
-            <span className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{question}</span>
+            <span className="mb-2 text-lg font-semibold text-gray-900">{question}</span>
             {shouldSay && 
-                <ul className="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
+                <ul className="max-w-md space-y-1 text-gray-500 list-disc list-inside">
                     {shouldSay.map(op => 
                         <li key={op}>
                             {op}
@@ -52,11 +52,11 @@ const Content = ({part, id, ielts_answer_id, question, shouldSay, answer, ideal_
                     )}
                 </ul>
             }
-            <span className="mb-2 text-base font-semibold text-gray-900 dark:text-white">Your Answer</span>
+            <span className="mb-2 text-base font-semibold text-gray-900">Your Answer</span>
             <div className='w-11/12 min-h-10 break-words whitespace-pre-wrap border border-black border-1 rounded-md p-2'>
                 {answer}
             </div>
-            <span className="mb-2 text-base font-semibold text-gray-900 dark:text-white">Ideal Answer</span>
+            <span className="mb-2 text-base font-semibold text-gray-900">Ideal Answer</span>
             <div className='flex justify-between items-center gap-3'>
                 {
                     editting ? 
