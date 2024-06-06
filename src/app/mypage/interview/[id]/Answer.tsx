@@ -24,7 +24,6 @@ const Answer = ({id}: Props) => {
     
 
     const fetchAndStoreAnswer = async () => {
-
         await fetchAnswer(id)
             .then(res => {
                 setPartOne(res.partOne);
@@ -37,6 +36,8 @@ const Answer = ({id}: Props) => {
         const initialLoad = async () => {
             setLoading(true);
             await fetchAndStoreAnswer();
+            // ロード終了時にアコーディオンを開く
+            toggleAccordion(1)
             setLoading(false);
         }
 
