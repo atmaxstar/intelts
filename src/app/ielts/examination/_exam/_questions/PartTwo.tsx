@@ -1,5 +1,5 @@
 import { useCountDownInterval } from "@/utils/useCountDownInterval";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaStop } from "react-icons/fa";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 
@@ -25,6 +25,12 @@ const PartTwo = ({question, handleNext, addAnswer}: Props) => {
     resetTranscript,
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
+
+  useEffect(() => {
+    return () => {
+        SpeechRecognition.stopListening();
+    }
+  },[])
 
   const handleAnimated = () =>{
     setTimeout(() => {
