@@ -5,7 +5,7 @@ import SpeechRecognition, {
     useSpeechRecognition,
   } from "react-speech-recognition";
 import { FaStop } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCountDownInterval } from "@/utils/useCountDownInterval";
 
 interface Props{
@@ -22,8 +22,13 @@ const Question = ({question, handleNext, appendAnswer}: Props) => {
       transcript,
       listening,
       resetTranscript,
-      browserSupportsSpeechRecognition,
     } = useSpeechRecognition();
+    
+    useEffect(() => {
+        return () => {
+            SpeechRecognition.stopListening();
+        }
+    },[])
 
     const handleAnimated = () =>{
         setTimeout(() => {
@@ -38,11 +43,6 @@ const Question = ({question, handleNext, appendAnswer}: Props) => {
         handleNext();
     }
     
-
-    if (!browserSupportsSpeechRecognition) {
-        return <span>ブラウザが音声認識未対応です</span>;
-    }
-
     return (
         <div className="flex flex-col justify-center items-center h-4/6 gap-2">
             
