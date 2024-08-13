@@ -1,9 +1,9 @@
 declare module 'process' {
-	global {
-		namespace NodeJS {
-			interface ProcessEnv {
-				readonly NODE_ENV?: string;
-			}
-		}
-	}
+  global {
+    namespace NodeJS {
+      interface ProcessEnv {
+        readonly NODE_ENV?: string
+      }
+    }
+  }
 }

@@ -1,28 +1,33 @@
-import { authOptions } from "@/lib/auth";
-import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth";
-import { NextRequest, NextResponse } from "next/server";
+import { authOptions } from '@/lib/auth'
+import prisma from '@/lib/prisma'
+import { getServerSession } from 'next-auth'
+import type { NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
 
 export async function GET(
-    req: NextRequest,
-    { params }: { params: { id: string } }
-  ) {
-    const session = await getServerSession(authOptions);
-    const userId = session?.user.id;
+  req: NextRequest,
+  { params }: { params: { id: string } },
+) {
+  const session = await getServerSession(authOptions)
+  const userId = session?.user.id
 
-    const answer = await prisma.interviewAnswer.findFirst({
-        where: { 
-            id: Number(params.id),
-            user_id: userId,
-        },
-        select: {
-            partOne: true,
-        }
+  const answer = await prisma.interviewAnswer
+    .findFirst({
+      where: {
+        id: Number(params.id),
+        user_id: userId,
+      },
+      select: {
+        partOne: true,
+      },
     })
-    .catch(err => {
-        console.log(err);
-        return NextResponse.json({error:"Failed to Fetch Answer"}, { status: 400 })
+    .catch((err) => {
+      console.log(err)
+      return NextResponse.json(
+        { error: 'Failed to Fetch Answer' },
+        { status: 400 },
+      )
     })
 
-    return NextResponse.json({ answer }, { status: 200 })
+  return NextResponse.json({ answer }, { status: 200 })
 }

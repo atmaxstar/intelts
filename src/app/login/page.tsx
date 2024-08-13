@@ -1,9 +1,9 @@
-import Login from "./Login"
+import Login from './Login'
 
 const page = () => {
   return (
-    <div className="w-full bg-gray-200 h-full flex justify-center items-center">
-      <Login/>
+    <div className="flex size-full items-center justify-center bg-gray-200">
+      <Login />
     </div>
   )
 }

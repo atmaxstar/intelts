@@ -1,12 +1,9 @@
 'use client'
 
-import Logout from "./Logout"
+import Logout from './Logout'
 
 const page = () => {
-
-    return (
-        <Logout/>
-    )
+  return <Logout />
 }
 
 export default page

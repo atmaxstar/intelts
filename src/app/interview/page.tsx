@@ -1,9 +1,7 @@
-import StartPage from "./StartPage"
+import StartPage from './StartPage'
 
 const page = () => {
-  return (
-    <StartPage/>
-  )
+  return <StartPage />
 }
 
 export default page
